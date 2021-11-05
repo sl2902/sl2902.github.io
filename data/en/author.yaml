@@ -3,7 +3,7 @@ name: "Sundeep L"
 nickname: "Sundeep"
 # greeting message before your name. it will default to "Hi! I am" if not provided
 greeting: "Hello, I am"
-# image: "images/author/john.png"
+image: "images/author/infinity_symbol.png"
 # give your some contact information. they will be used in the footer
 contactInfo:
   email: "laxmsun@gmail.com"
