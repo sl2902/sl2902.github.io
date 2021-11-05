@@ -1,0 +1,20 @@
+# some information about you
+name: "Sundeep L"
+nickname: "Sundeep"
+# greeting message before your name. it will default to "Hi! I am" if not provided
+greeting: "Hello, I am"
+# image: "images/author/john.png"
+# give your some contact information. they will be used in the footer
+contactInfo:
+  email: "laxmsun@gmail.com"
+  # phone: "+0123456789"
+
+# some summary about what you do
+summary:
+  - I am a Data consultant
+  - I am resilient
+  - I am always learning new things
+  - I am an aspiring Data Scientist and Computer Vision engineer
+  - I love building data pipelines, analyzing data, building visuals and making models
+  - I work on Kaggle problems
+  - I love to work with some fun projects
