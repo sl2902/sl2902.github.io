@@ -1,12 +1,4 @@
 
-  
-    
-
-    create table "iceberg"."bronze"."fct_base_repo_stats"
-      
-      WITH (format = 'PARQUET')
-    as (
-      
 
 
 with 
@@ -27,9 +19,13 @@ with
             updated_at,
             response,
             load_date,
-            row_number() over(partition by stat_id order by updated_at desc) rank_dups
+            row_number() over(partition by stat_id order by load_date desc) rank_dups
         from
             "iceberg"."bronze"."base_repo"
+
+        
+        where
+            load_date > (SELECT coalesce(max(load_date), cast('1970-01-01 00:00:00' as timestamp)) from "iceberg"."bronze"."stg_base_repo_stats")
 
         
 )
@@ -53,6 +49,3 @@ from
     base
 where
     rank_dups = 1
-    );
-
-  

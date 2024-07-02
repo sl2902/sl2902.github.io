@@ -6,12 +6,13 @@ with
             id
             ,response
             ,created_at
-            ,row_number() over(partition by id order by created_at desc) as rank_dups
+            ,load_date
+            ,row_number() over(partition by id order by load_date desc) as rank_dups
         from
             "iceberg"."bronze"."issues"
-            
+        
         where
-            created_at >= (SELECT max(created_at) from "iceberg"."bronze"."dim_resp_issues")
+            load_date > (SELECT max(load_date) from "iceberg"."bronze"."stg_raw_issues")
 
         
 )
@@ -19,6 +20,7 @@ select
     id
     ,response
     ,created_at
+    ,load_date
 from
     staging
 where

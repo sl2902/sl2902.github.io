@@ -1,4 +1,12 @@
 
+  
+    
+
+    create table "iceberg"."bronze"."stg_issues"
+      
+      WITH (format = 'PARQUET')
+    as (
+      
 
 with
     staging as (
@@ -29,15 +37,11 @@ with
             ,eyes
             ,response
             ,load_date
-            ,row_number() over(partition by id order by created_at desc) as rank_dups
+            ,row_number() over(partition by id order by load_date desc) as rank_dups
         from
             "iceberg"."bronze"."issues"
         
             
-        where
-            created_at >= (SELECT max(created_at) from "iceberg"."bronze"."fct_issues")
-
-        
 )
 select
         id
@@ -70,3 +74,6 @@ from
     staging
 where
     rank_dups = 1
+    );
+
+  
